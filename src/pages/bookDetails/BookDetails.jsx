@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
+
 
 const BookDetails = () => {
     const { bookId: bookParamsId } = useParams();
@@ -7,7 +8,8 @@ const BookDetails = () => {
     const books = useLoaderData();
     const expectedBook = books.find(book => book.bookId == bookParamsId)
 
-    const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = expectedBook;
+    const {bookId, bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = expectedBook;
+
 
     return (
         <div className='container mx-auto mt-10'>
@@ -58,8 +60,8 @@ const BookDetails = () => {
                     </div>
 
                     <div className="card-actions justify-start pt-4 gap-4">
-                        <button className="btn btn-outline px-6">Read</button>
-                        <button className="btn btn-accent text-white">Wishlist</button>
+                        <button className="btn btn-outline px-6" onClick={()=>{handleMarkAsRead(expectedBook)}}>Mark as Read</button>
+                        <button className="btn btn-accent text-white">Add to Wishlist</button>
                     </div>
                 </div>
             </div>
