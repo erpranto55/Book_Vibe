@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import BookCard from './BookCard/BookCard';
+import BookCard from '../../components/ui/BookCard/BookCard';
 
 const booksPromise = fetch('/booksData.json').then(res => res.json());
 
