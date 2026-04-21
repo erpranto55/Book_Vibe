@@ -10,7 +10,7 @@ const BookDetails = () => {
     const books = useLoaderData();
     const expectedBook = books.find(book => book.bookId == bookParamsId)
 
-    const { bookId, bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = expectedBook;
+    const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = expectedBook;
 
     const { handleMarkAsRead, handleWishList } = useContext(BookContext);
 
