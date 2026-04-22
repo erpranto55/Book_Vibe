@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BookContext } from '../../context/BookProvider';
 import BookCard from '../ui/BookCard/BookCard';
+import WishListCard from '../ui/ListCard/WishListCard';
 
 const ListedWishList = () => {
     const { wishList } = useContext(BookContext);
@@ -16,7 +17,7 @@ const ListedWishList = () => {
             {/* WishList */}
             {
                 wishList.map((book, ind) => (
-                    <BookCard key={ind} book={book} />
+                    <WishListCard key={ind} book={book} />
                 ))
             }
         </div>

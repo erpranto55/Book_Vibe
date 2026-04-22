@@ -1,21 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BookContext } from '../../context/BookProvider';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ListedReadList from '../../components/listedbooks/ListedReadList';
 import ListedWishList from '../../components/listedbooks/ListedWishList';
+import { IoIosArrowDown } from 'react-icons/io';
 
 
 const Books = () => {
 
     const { storedBooks, wishList } = useContext(BookContext);
+    const [sortingType, setSortingType] = useState("");
 
     return (
         <div className='container mx-auto my-3'>
             <h2 className='text-3xl font-bold text-center bg-gray-200 h-25 items-center flex justify-center rounded-2xl'>Books</h2>
 
-            <div>
-                Short By
+            <div className='flex justify-center mt-3'>
+                <div className="dropdown dropdown-start">
+                    <div tabIndex={0} role="button" className="btn m-1">
+                        Click <IoIosArrowDown />
+                    </div>
+                    <ul tabIndex="-1"
+                        className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <li onClick={() => setSortingType('rating')}>
+                            <a>Rating</a>
+                        </li>
+                        <li onClick={() => setSortingType('pages')}>
+                            <a>Number of Pages</a>
+                        </li>
+                        <li onClick={() => setSortingType('year')}>
+                            <a>Published Year</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <Tabs>
                 <TabList>
@@ -24,7 +42,7 @@ const Books = () => {
                 </TabList>
 
                 <TabPanel>
-                    <ListedReadList storedBooks={storedBooks} />
+                    <ListedReadList sortingType={sortingType} />
                 </TabPanel>
                 <TabPanel>
                     <ListedWishList wishList={wishList} />

@@ -3,8 +3,7 @@ import { CiLocationOn } from 'react-icons/ci';
 import { HiUsers } from 'react-icons/hi';
 import { LuFileChartColumnIncreasing } from 'react-icons/lu';
 
-const ReadListCard = ({ book }) => {
-    console.log(book);
+const WishListCard = ({ book }) => {
     return (
         <div className='flex mt-5 p-5 border border-gray-200 rounded-2xl gap-6 '>
             <div className='bg-gray-200 h-70 w-57.5 items-center flex justify-center rounded-2xl'  >
@@ -61,4 +60,4 @@ const ReadListCard = ({ book }) => {
     );
 };
 
-export default ReadListCard;
+export default WishListCard;
