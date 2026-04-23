@@ -4,12 +4,12 @@ import BookCard from "../ui/BookCard/BookCard";
 import ReadListCard from "../ui/ListCard/ReadListCard";
 
 const ListedReadList = ({ sortingType }) => {
-    const { storedBooks } = useContext(BookContext);
+    const { readList } = useContext(BookContext);
 
     const [filteredReadList, setFilteredReadList] = useState([]);
 
     useEffect(() => {
-        let data = [...storedBooks];
+        let data = [...readList];
 
         if (sortingType === "pages") {
             data.sort((a, b) => a.totalPages - b.totalPages);
@@ -23,7 +23,7 @@ const ListedReadList = ({ sortingType }) => {
 
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setFilteredReadList(data);
-    }, [sortingType, storedBooks]);
+    }, [sortingType, readList]);
 
     if (filteredReadList.length === 0) {
         return (

@@ -1,27 +1,38 @@
 import React, { createContext, useState } from 'react';
 import { toast } from 'react-toastify';
+import { addReadListToLocalDB, addWishListToLocalDB, getAllReadListFromLocalDB, getAllWishListFromLocalDB } from '../utils/localDB';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const BookContext = createContext()
 
 const BookProvider = ({ children }) => {
-    const [storedBooks, setStoredBooks] = useState([]);
-    const [wishList, setWishList] = useState([]);
+    const [readList, setReadList] = useState(() => getAllReadListFromLocalDB());
+    const [wishList, setWishList] = useState(() => getAllWishListFromLocalDB());
+
+    // useEffect(() => {
+    //     const getReadListFromLocalDB = getAllReadListFromLocalDB();
+    //     // console.log(getReadListFromLocalDB, "getReadListFromLocalDB");
+    //     setReadList(getReadListFromLocalDB);
+    // }, [])
 
     const handleMarkAsRead = (currentBook) => {
-        const isExists = storedBooks.find(book => book.bookId == currentBook.bookId);
+        addReadListToLocalDB(currentBook);
+
+        const isExists = readList.find(
+            book => book.bookId == currentBook.bookId
+        );
         if (isExists) {
             toast.error('This Book is Already Exists');
         }
         else {
-            setStoredBooks([...storedBooks, currentBook]);
+            setReadList([...readList, currentBook]);
             toast.success(`${currentBook.bookName} is Marked As Read.`)
         }
     }
 
     const handleWishList = (currentBook) => {
-
-        const isExistInReadList = storedBooks.find(
+        addWishListToLocalDB(currentBook);
+        const isExistInReadList = readList.find(
             book => book.bookId == currentBook.bookId
         );
 
@@ -42,7 +53,7 @@ const BookProvider = ({ children }) => {
     }
 
     const data = {
-        storedBooks, setStoredBooks, handleMarkAsRead, wishList, setWishList, handleWishList
+        readList, setReadList, handleMarkAsRead, wishList, setWishList, handleWishList
     }
 
     return (

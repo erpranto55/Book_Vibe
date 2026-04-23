@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData, useParams } from 'react-router';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 import { BookContext } from '../../context/BookProvider';
 

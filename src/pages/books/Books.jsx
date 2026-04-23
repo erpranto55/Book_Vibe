@@ -9,7 +9,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 const Books = () => {
 
-    const { storedBooks, wishList } = useContext(BookContext);
+    const { readList, wishList } = useContext(BookContext);
     const [sortingType, setSortingType] = useState("");
 
     return (
